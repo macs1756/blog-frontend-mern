@@ -6,6 +6,8 @@ import CatalogPosts from './Pages/CatalogPosts';
 import SinglePost from './Pages/SinglePost';
 import AddPost from './Pages/AddPost';
 import EditPost from './Pages/EditPost';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
         <Route path='posts' element={<CatalogPosts />} />
         <Route path='post/:id' element={<SinglePost />} />
         <Route path='add-post' element={<AddPost />} />
-        <Route path='edit-post' element={<EditPost />} />
+        <Route path='edit-post/:id' element={<EditPost />} />
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
       </Routes>
     </Layout>
   );
