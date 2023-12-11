@@ -6,7 +6,7 @@ import { LayoutProps } from '../../Types'
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <React.Fragment>
-      <div className='container mx-auto'>
+      <div className='container mx-auto mt-[150px]'>
         <Navbar />
         {children}
       </div>
