@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "../utils/axios"
 import { InitialStateUser, RegisterUserPayload } from '../Types'
+import * as React from 'react';
+
 
 const initialState: InitialStateUser = {
     user: null,
@@ -8,7 +10,6 @@ const initialState: InitialStateUser = {
     status: null,
     token: null
 }
-
 
 
 export const registerUser = createAsyncThunk('auth/registerUser', async ({ username, password }: RegisterUserPayload) => {
@@ -62,7 +63,7 @@ export const authSlice = createSlice({
         });
         builder.addCase(registerUser.fulfilled, (state,action) => {
             state.isLoading = false
-            state.status = action?.payload?.messange
+            state.status = action?.payload?.messange + ' ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
             state.user = action?.payload?.newUser
             state.token = action?.payload?.token
         });
@@ -77,8 +78,8 @@ export const authSlice = createSlice({
         });
         builder.addCase(loginUser.fulfilled, (state,action) => {
             state.isLoading = false
-            state.status = action?.payload?.messange
-            state.user = action?.payload?.newUser
+            state.status = action?.payload?.messange  + ' ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
+            state.user = action?.payload?.user
             state.token = action?.payload?.token
         });
         builder.addCase(loginUser.rejected, (state) => {

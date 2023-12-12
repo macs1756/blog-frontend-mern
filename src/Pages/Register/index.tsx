@@ -21,8 +21,7 @@ function Register(): JSX.Element {
         toast(status)
         setIsCreateUser(false)
       }
-      console.log(status)
-      
+    
   }, [status])
 
   const handleSubmit = () => {
