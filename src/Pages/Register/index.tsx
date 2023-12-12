@@ -14,7 +14,7 @@ function Register(): JSX.Element {
 
   const dispatch = useAppDispatch()
 
-  const { status, isLoading } = useAppSelector( (state) => state.auth )
+  const { status } = useAppSelector( (state) => state.auth )
 
   React.useEffect(()=>{
       if(status && isCreateUser){
