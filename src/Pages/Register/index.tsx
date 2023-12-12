@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../Hooks/reduxHooks'
+import { registerUser } from '../../Redux/authSlice';
 
 
 function Register(): JSX.Element {
@@ -7,8 +9,20 @@ function Register(): JSX.Element {
   const [userNameValue, setUserNameValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
 
+  const dispatch = useAppDispatch()
 
+  const handleSubmit = () => {
 
+      try {  
+        dispatch(registerUser({username:userNameValue, password:passwordValue}))
+        setUserNameValue('')
+        setPasswordValue('')
+
+      } catch (error) {
+        console.log(error)
+        
+      }
+  }
 
 
 
@@ -23,7 +37,7 @@ function Register(): JSX.Element {
 
         <div className="flex items-center justify-between px-2 text-[18px] font-semibold">
 
-          <button className='tr hover:text-[#243B55]'>Confirm</button>
+          <button onClick={handleSubmit} className='tr hover:text-[#243B55]'>Confirm</button>
 
           <Link to="/login" className='tr hover:text-[#243B55]'>Log In</Link>
         </div>

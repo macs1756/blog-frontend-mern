@@ -45,8 +45,9 @@ export const authSlice = createSlice({
             state.token = action.payload.token
         });
 
-        builder.addCase(registerUser.rejected, (state) => {
-           state.status = action.payload.messange
+        builder.addCase(registerUser.rejected, (state,action) => {
+           state.status = 'An unknown error occurred';
+           state.isLoading = false
         });
     },
 })
