@@ -9,3 +9,8 @@ export interface InitialStateUser{
   isLoading: boolean
   token:  string | null
 }
+
+export interface RegisterUserPayload {
+  username: string;
+  password: string;
+}
