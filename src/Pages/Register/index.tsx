@@ -1,35 +1,14 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { blogApi } from '../../RTK_Query';
+import { Link } from 'react-router-dom'
+
 
 function Register(): JSX.Element {
 
   const [userNameValue, setUserNameValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
 
-  const handleRegistration = async () => {
-    try {
-      if (userNameValue.length > 0 && passwordValue.length > 0) {
-      
 
-        const { data, error } = await blogApi.useToRegisterQuery({
-          username: userNameValue,
-          password: passwordValue,
-        });
 
-        if (error) {
-          alert('Error on server');
-        }
-
-        if (data) {
-          console.log(data);
-        }
-      } else {
-        alert('Your password or username is missing');
-      }
-    } finally {
-    }
-  };
 
 
 
@@ -44,7 +23,7 @@ function Register(): JSX.Element {
 
         <div className="flex items-center justify-between px-2 text-[18px] font-semibold">
 
-          <button onClick={handleRegistration} className='tr hover:text-[#243B55]'>Confirm</button>
+          <button className='tr hover:text-[#243B55]'>Confirm</button>
 
           <Link to="/login" className='tr hover:text-[#243B55]'>Log In</Link>
         </div>
