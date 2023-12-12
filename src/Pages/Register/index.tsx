@@ -1,15 +1,29 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
-import { useAppDispatch } from '../../Hooks/reduxHooks'
-import { registerUser } from '../../Redux/authSlice';
+import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
+import { registerUser } from '../../Redux/authSlice'
+import { toast } from 'react-toastify'
+
 
 
 function Register(): JSX.Element {
 
   const [userNameValue, setUserNameValue] = React.useState('')
   const [passwordValue, setPasswordValue] = React.useState('')
+  const [isCreateUser, setIsCreateUser] = React.useState(false)
 
   const dispatch = useAppDispatch()
+
+  const { status, isLoading } = useAppSelector( (state) => state.auth )
+
+  React.useEffect(()=>{
+      if(status && isCreateUser){
+        toast(status)
+        setIsCreateUser(false)
+      }
+      console.log(status)
+      
+  }, [status])
 
   const handleSubmit = () => {
 
@@ -25,6 +39,7 @@ function Register(): JSX.Element {
 
         setUserNameValue('')
         setPasswordValue('')
+        setIsCreateUser(true)
 
         }else{
           alert('Your password or username is missing')

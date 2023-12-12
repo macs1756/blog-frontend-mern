@@ -46,7 +46,7 @@ export const authSlice = createSlice({
         });
 
         builder.addCase(registerUser.rejected, (state,action) => {
-           state.status = 'An unknown error occurred';
+           state.status = 'Error on server'
            state.isLoading = false
         });
     },
