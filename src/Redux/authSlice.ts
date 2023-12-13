@@ -9,6 +9,7 @@ const initialState: InitialStateUser = {
     token: null
 }
 
+//Register 
 export const registerUser = createAsyncThunk('auth/registerUser', async ({ username, password }: RegisterUserPayload) => {
     try {
 
@@ -27,6 +28,8 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ usern
     }
 })
 
+
+//getMe
 export const getMe = createAsyncThunk('auth/getMe', async () => {
 
     try {
@@ -39,9 +42,7 @@ export const getMe = createAsyncThunk('auth/getMe', async () => {
 
 })
 
-
-
-
+//Log In
 export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, password }: RegisterUserPayload) => {
     try {
 
@@ -73,6 +74,7 @@ export const authSlice = createSlice({
             state.token = null
         }
     },
+
 
     extraReducers: (builder) => {
 
@@ -122,6 +124,8 @@ export const authSlice = createSlice({
            state.isLoading = false
         }); 
     },
+
+
 })
 
 export const checkIsAuth: TcheckIsAuth = state => Boolean(state.auth.token)
