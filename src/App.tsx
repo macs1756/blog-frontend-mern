@@ -10,8 +10,18 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useAppDispatch } from './Hooks/reduxHooks'
+import { getMe } from './Redux/authSlice'
 
 function App() {
+
+  const dispatch = useAppDispatch()
+
+
+  React.useEffect(()=>{
+        dispatch(getMe())
+  })
+
   return (
     <Layout>
       <Routes>

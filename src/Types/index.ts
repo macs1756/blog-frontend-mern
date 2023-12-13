@@ -15,5 +15,5 @@ export interface RegisterUserPayload {
   password: string
 }
 
-export type TcheckIsAuth = (state: {auth: InitialStateUser}) => boolean
+export type TcheckIsAuth = (state: {auth: InitialStateUser} ) => boolean
 
