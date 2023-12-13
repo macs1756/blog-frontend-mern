@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
-import { registerUser } from '../../Redux/authSlice'
+import { checkIsAuth, registerUser } from '../../Redux/authSlice'
 import { toast } from 'react-toastify'
 
 
@@ -12,7 +12,11 @@ function Register(): JSX.Element {
   const [passwordValue, setPasswordValue] = React.useState('')
   const [isCreateUser, setIsCreateUser] = React.useState(false)
 
+  const navigate = useNavigate()
+
   const dispatch = useAppDispatch()
+
+  const isAuth: boolean = useAppSelector(checkIsAuth)
 
   const { status } = useAppSelector( (state) => state.auth )
 
@@ -20,6 +24,7 @@ function Register(): JSX.Element {
       if(status && isCreateUser){
         toast(status)
         setIsCreateUser(false)
+        if(isAuth) navigate('/')
       }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps

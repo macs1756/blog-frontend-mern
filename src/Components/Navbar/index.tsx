@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks';
 import { checkIsAuth, logout } from '../../Redux/authSlice';
 
@@ -11,8 +12,10 @@ function Navbar(): JSX.Element {
   const dispatch = useAppDispatch()
   
   const handleLogOut = () => {
-    dispatch(logout()); // No need for 'as any' here
-  };
+    dispatch(logout())
+    window.localStorage.removeItem('token')
+    toast('Logout is successfull')
+  }
 
 
 
@@ -50,7 +53,7 @@ function Navbar(): JSX.Element {
 
         {
           isAuth ? 
-          <Link to='/' onClick={handleLogOut} className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log Out</Link>
+          <Link to='/login' onClick={handleLogOut} className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log Out</Link>
           :
           <Link to='login' className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log In</Link>
         }

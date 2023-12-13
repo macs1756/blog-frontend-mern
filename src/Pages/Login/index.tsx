@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
 import { toast } from 'react-toastify'
-import { loginUser } from '../../Redux/authSlice'
+import { checkIsAuth, loginUser } from '../../Redux/authSlice'
 
 function Login(): JSX.Element {
 
@@ -14,13 +14,19 @@ function Login(): JSX.Element {
 
   const { status } = useAppSelector( (state) => state.auth )
 
+  const isAuth: boolean = useAppSelector(checkIsAuth)
+
+  const navigate = useNavigate()
   
   React.useEffect(()=>{
     if(status && isCreateUser){
       toast(status)
       setIsCreateUser(false)
+
+      if(isAuth) navigate('/')
+
     }
-    
+
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [status])
 
