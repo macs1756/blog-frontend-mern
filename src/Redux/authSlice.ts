@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "../utils/axios"
-import { InitialStateUser, RegisterUserPayload } from '../Types'
-import * as React from 'react';
-
+import { InitialStateUser, RegisterUserPayload, TcheckIsAuth } from '../Types'
 
 const initialState: InitialStateUser = {
     user: null,
@@ -10,7 +8,6 @@ const initialState: InitialStateUser = {
     status: null,
     token: null
 }
-
 
 export const registerUser = createAsyncThunk('auth/registerUser', async ({ username, password }: RegisterUserPayload) => {
     try {
@@ -29,6 +26,20 @@ export const registerUser = createAsyncThunk('auth/registerUser', async ({ usern
         console.log(error)
     }
 })
+
+export const getMe = createAsyncThunk('auth/getMe', async () => {
+
+    try {
+        const { data } = await axios.get('/auth/me/')
+        return data
+
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+
 
 
 export const loginUser = createAsyncThunk('auth/loginUser', async ({ username, password }: RegisterUserPayload) => {
@@ -88,7 +99,23 @@ export const authSlice = createSlice({
         }); 
 
 
+        //Get me
+        builder.addCase(getMe.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getMe.fulfilled, (state,action) => {
+            state.isLoading = false
+            state.status = null
+            state.user = action?.payload?.user
+            state.token = action?.payload?.token
+        });
+        builder.addCase(getMe.rejected, (state) => {
+           state.status = null
+           state.isLoading = false
+        }); 
     },
 })
+
+export const checkIsAuth: TcheckIsAuth = state => Boolean(state.auth.token)
 
 export default authSlice.reducer
