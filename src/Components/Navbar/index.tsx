@@ -2,13 +2,19 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks';
-import { checkIsAuth, logOut } from '../../Redux/authSlice';
+import { checkIsAuth, logout } from '../../Redux/authSlice';
 
 function Navbar(): JSX.Element {
 
   const isAuth: boolean = useAppSelector(checkIsAuth)
 
   const dispatch = useAppDispatch()
+  
+  const handleLogOut = () => {
+    dispatch(logout()); // No need for 'as any' here
+  };
+
+
 
   return (
     <nav className='bg-slate-400 fixed top-0 left-0 w-full'>
@@ -44,7 +50,7 @@ function Navbar(): JSX.Element {
 
         {
           isAuth ? 
-          <button onClick={dispatch(logOut())} className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log Out</button>
+          <Link to='/' onClick={handleLogOut} className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log Out</Link>
           :
           <Link to='login' className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log In</Link>
         }

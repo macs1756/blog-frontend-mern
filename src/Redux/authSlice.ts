@@ -67,12 +67,12 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logOut: (state) => {
+        logout: (state) => {
             state.user = null
+            state.token = null
             state.isLoading = false
             state.status = null
-            state.token = null
-        }
+        },
     },
 
 
@@ -130,4 +130,5 @@ export const authSlice = createSlice({
 
 export const checkIsAuth: TcheckIsAuth = state => Boolean(state.auth.token)
 
+export const { logout } = authSlice.actions
 export default authSlice.reducer
