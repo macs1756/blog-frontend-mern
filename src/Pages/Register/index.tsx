@@ -28,7 +28,7 @@ function Register(): JSX.Element {
       }
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status])
+  }, [status, navigate, isAuth])
 
   const handleSubmit = () => {
 
