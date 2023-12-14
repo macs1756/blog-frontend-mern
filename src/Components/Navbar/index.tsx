@@ -8,6 +8,8 @@ import { checkIsAuth, logout } from '../../Redux/authSlice';
 function Navbar(): JSX.Element {
 
   const isAuth: boolean = useAppSelector(checkIsAuth)
+  
+  const { user } = useAppSelector( (state) => state.auth )
 
   const dispatch = useAppDispatch()
   
@@ -58,7 +60,7 @@ function Navbar(): JSX.Element {
           <Link to='login' className='tr bg-gray-600 py-1 px-5 rounded-md hover:bg-slate-700'>Log In</Link>
         }
         
-
+        <div className={isAuth ? "logIn-name__user active" : "logIn-name__user"} >{user?.username}</div>
       </div>
     </nav>
   );

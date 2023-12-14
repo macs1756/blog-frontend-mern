@@ -12,7 +12,7 @@ function Login(): JSX.Element {
 
   const dispatch = useAppDispatch()
 
-  const { status } = useAppSelector( (state) => state.auth )
+  const { status} = useAppSelector( (state) => state.auth )
 
   const isAuth: boolean = useAppSelector(checkIsAuth)
 
@@ -69,10 +69,12 @@ const handleSubmit = () => {
           <button onClick={handleSubmit} className='tr hover:text-[#243B55]'>Log In</button>
 
           <Link to="/register" className='tr hover:text-[#243B55]'>To register</Link>
+          
           </div>
          
 
         </div>
+
     </div>
   );
 }
