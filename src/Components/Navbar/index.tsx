@@ -9,7 +9,7 @@ function Navbar(): JSX.Element {
 
   const isAuth: boolean = useAppSelector(checkIsAuth)
   
-  const { user } = useAppSelector( (state) => state.auth )
+  const { user } = useAppSelector((state) => state.auth)
 
   const dispatch = useAppDispatch()
   
