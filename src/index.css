@@ -18,3 +18,22 @@
 .tr{
   transition: all 0.3s linear;
 }
+
+.logIn-name__user{
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 6px;
+  line-height: 1;
+  border-radius: 5px;
+  background-color: rgb(148 163 184);
+  color: rgb(71 85 105 );
+  transition: all 0.3s linear;
+  opacity: 0;
+}
+
+.logIn-name__user.active{
+  opacity: 1;
+}

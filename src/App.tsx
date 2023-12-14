@@ -10,17 +10,19 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useAppDispatch } from './Hooks/reduxHooks'
-import { getMe } from './Redux/authSlice'
+import { useAppDispatch, useAppSelector } from './Hooks/reduxHooks'
+import { checkIsAuth, getMe } from './Redux/authSlice'
 
 function App() {
 
   const dispatch = useAppDispatch()
 
-
   React.useEffect(()=>{
         dispatch(getMe())
   })
+
+  const { user } = useAppSelector( (state) => state.auth )
+  const isAuth: boolean = useAppSelector(checkIsAuth)
 
   return (
     <Layout>
@@ -34,8 +36,11 @@ function App() {
         <Route path='register' element={<Register />} />
       </Routes>
       <ToastContainer position='bottom-right' />
+
+      <div className={isAuth ? "logIn-name__user active" : "logIn-name__user"} >{user?.username}</div>
+
     </Layout>
-  );
+  ); 
 }
 
 export default App
