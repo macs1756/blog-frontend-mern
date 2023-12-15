@@ -13,8 +13,14 @@ export interface InitialStateUserDetails {
   __v: number
 }
 
+export interface Ipost{
+  title: string
+  description: string
+  image: string
+}
+
 export interface IinitialStatePost {
-  posts: []
+  posts: Ipost[]
   popularPosts: []
   isLoading: boolean
 }
@@ -34,3 +40,8 @@ export interface RegisterUserPayload {
 
 export type TcheckIsAuth = (state: {auth: InitialStateUser} ) => boolean
 
+
+
+export interface IpostPayload{
+    payload: Ipost
+}

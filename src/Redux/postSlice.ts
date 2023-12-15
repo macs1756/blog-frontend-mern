@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "../utils/axios"
-import { IinitialStatePost } from '../Types'
+import { IinitialStatePost, IpostPayload } from '../Types'
 
 const initialState: IinitialStatePost = {
   posts: [],
@@ -32,9 +32,9 @@ export const postSlice = createSlice({
     })
 
 
-    builder.addCase(createPost.fulfilled, (state, action) => {
+    builder.addCase(createPost.fulfilled, (state, action: IpostPayload) => {
       state.isLoading = false
-      state.posts.push(action.payload)
+      state.posts.push(action?.payload)
     })
 
 
