@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useAppDispatch } from '../../Hooks/reduxHooks';
+import { createPost } from '../../Redux/postSlice';
 
 function AddPost(): JSX.Element {
 
@@ -6,7 +8,7 @@ function AddPost(): JSX.Element {
   const [description,setDescription] = React.useState<string>('')
 
   const [image, setImage] = React.useState<File | null>(null)
-
+  const dispatch = useAppDispatch()
 
   const submitHandler = () => {
     try {
@@ -17,7 +19,11 @@ function AddPost(): JSX.Element {
       data.append('description', description)
       if(image !== null){
         data.append('image', image)
-      } 
+      }else{
+        data.append('image', '')
+      }
+
+      dispatch(createPost(data))
 
     } catch (error) {
       console.log(error);
@@ -70,7 +76,7 @@ function AddPost(): JSX.Element {
        />
  
       <div className="flex gap-6 items-center justify-center mt-4">
-        <button className='flex items-center bg-gray-600 text-xs text-white rounded-sm py-2 px-5'>Add</button>
+        <button onClick={submitHandler} className='flex items-center bg-gray-600 text-xs text-white rounded-sm py-2 px-5'>Add</button>
         <button className='flex items-center bg-red-500 text-xs text-white rounded-sm py-2 px-5'>Cancel</button>
       </div>
 
