@@ -13,6 +13,12 @@ export interface InitialStateUserDetails {
   __v: number
 }
 
+export interface IinitialStatePost {
+  posts: []
+  popularPosts: []
+  isLoading: boolean
+}
+
 
 export interface InitialStateUser{
   user: InitialStateUserDetails  | null

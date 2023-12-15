@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-// import { shadekoApi } from '../RTK_Query/index'
+import postSlice from './postSlice'
 import authSlice from './authSlice'
 
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore, persistReducer } from 'redux-persist'
@@ -14,12 +14,12 @@ const persistConfig = {
 }
 
 const persistedAuthSlice = persistReducer(persistConfig, authSlice)
-// const persistedBasketReducer = persistReducer(persistConfig, basketReducer)
+const persistedpostSlice = persistReducer(persistConfig, postSlice)
 
 export const store = configureStore({
   reducer: {
-    // [shadekoApi.reducerPath]: shadekoApi.reducer,
     auth: persistedAuthSlice,
+    post: persistedpostSlice
   },
   devTools: { trace: true, traceLimit: 25 },
   middleware: (getDefaultMiddleware) =>
@@ -28,8 +28,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
     })
-    // .concat(shadekoApi.middleware)
-
 })
 
 setupListeners(store.dispatch)
