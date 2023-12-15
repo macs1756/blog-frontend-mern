@@ -12,6 +12,8 @@ import Post from '../../Components/Post';
         <div className='flex flex-col basis-4/5'>
         <div className='text-xs uppercase text-white'>Posts</div>
         <Post />
+        <Post />
+        <Post />
         </div>
 
         <div className="basis-1/5">
