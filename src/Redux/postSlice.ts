@@ -42,8 +42,6 @@ export const postSlice = createSlice({
       state.isLoading = false
     })
 
-
-
   },
 })
 
