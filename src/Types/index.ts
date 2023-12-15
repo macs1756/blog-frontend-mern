@@ -45,3 +45,11 @@ export type TcheckIsAuth = (state: {auth: InitialStateUser} ) => boolean
 export interface IpostPayload{
     payload: Ipost
 }
+
+export interface IgetAllPostsPayload{
+  payload: {
+    posts: Ipost[],
+    popularPosts: Ipost[]
+  }
+  
+}
