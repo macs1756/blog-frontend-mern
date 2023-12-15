@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useAppDispatch } from '../../Hooks/reduxHooks';
+import { toast } from 'react-toastify';
+import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks';
 import { createPost } from '../../Redux/postSlice';
 
 function AddPost(): JSX.Element {
@@ -10,6 +11,18 @@ function AddPost(): JSX.Element {
   const [image, setImage] = React.useState<File | null>(null)
   const dispatch = useAppDispatch()
 
+  const { posts } = useAppSelector(state => state.post )
+
+  React.useEffect(()=>{
+      if(posts[posts.length - 1] && title.length > 0){
+        toast('Post created')
+        setTitle('')
+        setDescription('')
+        setImage(null)
+      }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[posts])
+
   const submitHandler = () => {
     try {
       
@@ -19,8 +32,6 @@ function AddPost(): JSX.Element {
       data.append('description', description)
       if(image !== null){
         data.append('image', image)
-      }else{
-        data.append('image', '')
       }
 
       dispatch(createPost(data))
