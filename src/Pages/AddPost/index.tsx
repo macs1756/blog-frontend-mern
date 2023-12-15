@@ -7,18 +7,20 @@ function AddPost(): JSX.Element {
 
   const [title, setTitle] = React.useState<string>('')
   const [description,setDescription] = React.useState<string>('')
-
   const [image, setImage] = React.useState<File | null>(null)
   const dispatch = useAppDispatch()
-
   const { posts } = useAppSelector(state => state.post )
+
+  const clearMyForm = () => {
+    setTitle('')
+    setDescription('')
+    setImage(null)
+  }
 
   React.useEffect(()=>{
       if(posts[posts.length - 1] && title.length > 0){
         toast('Post created')
-        setTitle('')
-        setDescription('')
-        setImage(null)
+        clearMyForm()
       }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[posts])
@@ -94,8 +96,8 @@ function AddPost(): JSX.Element {
  
       <div className="flex gap-6 items-center justify-center mt-4">
         <button onClick={submitHandler} className='flex items-center bg-gray-600 text-xs text-white rounded-sm py-2 px-5'>Add</button>
-        <button className='flex items-center bg-red-500 text-xs text-white rounded-sm py-2 px-5'>Cancel</button>
-      </div>
+        <button onClick={clearMyForm} className='flex items-center bg-red-500 text-xs text-white rounded-sm py-2 px-5'>Cancel</button>
+      </div> 
 
     </form>
   );
