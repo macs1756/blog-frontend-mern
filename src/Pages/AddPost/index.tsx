@@ -54,7 +54,13 @@ function AddPost(): JSX.Element {
         className='absolute top-0 left-0 w-full h-full  cursor-pointer  opacity-0' />
       </div>
    
-      <div className='flex object-cover py-2'>Image</div>
+      <div className='flex object-cover py-2'>
+        {
+          image && (
+            <img src={URL.createObjectURL(image)} alt="preview" />
+          )
+        }
+      </div>
 
       <label className='text-xs text-white opacity-70'>Title your title</label>
 
