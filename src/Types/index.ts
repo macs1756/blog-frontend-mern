@@ -14,14 +14,22 @@ export interface InitialStateUserDetails {
 }
 
 export interface Ipost{
+  username: string
   title: string
   description: string
   image: string
+  _id: string
+  views: number
+  autor: string
+  comments: []
+  updatedAt: string
+  createdAt: string
+  __v: number
 }
 
 export interface IinitialStatePost {
   posts: Ipost[]
-  popularPosts: []
+  popularPosts: Ipost[]
   isLoading: boolean
 }
 
@@ -49,7 +57,11 @@ export interface IpostPayload{
 export interface IgetAllPostsPayload{
   payload: {
     posts: Ipost[],
-    popularPosts: Ipost[]
+     popularPosts: Ipost[]
   }
-  
+}
+
+
+export interface IpropsComponentPost {
+  e: Ipost
 }

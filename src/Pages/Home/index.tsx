@@ -1,7 +1,25 @@
-import * as React from 'react';
-import Post from '../../Components/Post';
+import * as React from 'react'
+import { toast } from 'react-toastify'
+import { PopularPost } from '../../Components/PopularPost'
+import Post from '../../Components/Post'
+import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
+import { getPosts } from '../../Redux/postSlice'
 
  const Home = () =>  {
+
+  const dispatch = useAppDispatch()
+  const{ posts, popularPosts} = useAppSelector(state => state.post)
+
+  React.useEffect(()=>{
+    dispatch(getPosts())
+  },[dispatch])
+
+  if(posts.length === 0){
+    toast('Posts not found')
+  }
+
+
+
 
   return (
 
@@ -11,14 +29,23 @@ import Post from '../../Components/Post';
 
         <div className='flex flex-col basis-4/5'>
         <div className='text-xs uppercase text-white'>Posts</div>
-        <Post />
-        <Post />
-        <Post />
+        {
+          posts.map((post) => (
+            <Post e={post} />
+          ))
+        }
+
         </div>
 
         <div className="basis-1/5">
           <div className='text-xs uppercase text-white'>Popular posts</div>
-          post
+
+          {
+            popularPosts.map((post) => (
+                <PopularPost e={post} />
+            ))
+          }
+        
         </div>
         
 

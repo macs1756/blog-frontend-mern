@@ -1,7 +1,8 @@
 import * as React from 'react'
 import {AiFillEye, AiOutlineMessage} from 'react-icons/ai'
+import { IpropsComponentPost } from '../../Types'
 
-const Post = () => {
+const Post = ({e}:IpropsComponentPost) => {
   return(
     <div className='flex flex-col basis-1/4 flex-grow mb-8'>
       <div>image</div>
@@ -10,7 +11,7 @@ const Post = () => {
           <h3 className='text-sx text-white opacity-50'>admin</h3>
           <p className='text-sx text-white opacity-50'>17.06,233</p>
       </div>
-      <div className="text-white text-xl ">POst title</div>
+      <div className="text-white text-xl ">Post title</div>
       <p className='text-white opacity-60 text-xs pt-2 mb-2'>description</p>
 
       <div className="flex gap-3 items-center">
