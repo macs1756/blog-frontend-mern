@@ -1,21 +1,22 @@
 import * as React from 'react'
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
+import { Link } from 'react-router-dom';
 import { IpropsComponentPost } from '../../Types'
 
 const Post = ({ e }: IpropsComponentPost) => {
 
   //change format data for data post
-  const originalDateString = "2023-12-15T17:31:31.259Z";
-  const originalDate = new Date(originalDateString);
-  const day = originalDate.getUTCDate();
-  const month = originalDate.getUTCMonth() + 1;
-  const year = originalDate.getUTCFullYear();
-  const formattedDateString = `${day}:${month}:${year}`;
+  const originalDateString = "2023-12-15T17:31:31.259Z"
+  const originalDate = new Date(originalDateString)
+  const day = originalDate.getUTCDate()
+  const month = originalDate.getUTCMonth() + 1
+  const year = originalDate.getUTCFullYear()
+  const formattedDateString = `${day}:${month}:${year}`
 
 
 
   return (
-    <div className='flex flex-col basis-1/4 flex-grow mb-[50px] border-b-2 border-gray-500 pb-2'>
+    <Link to={'/post/' + e?._id} className='flex flex-col basis-1/4 flex-grow mb-[50px] border-b-2 border-gray-500 pb-2'>
 
       {
         (e?.image && e?.image !== "missing") &&
@@ -46,7 +47,7 @@ const Post = ({ e }: IpropsComponentPost) => {
 
       </div>
 
-    </div>
+    </Link>
   )
 }
 
