@@ -1,30 +1,47 @@
 import * as React from 'react'
-import {AiFillEye, AiOutlineMessage} from 'react-icons/ai'
+import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
 import { IpropsComponentPost } from '../../Types'
 
-const Post = ({e}:IpropsComponentPost) => {
-  return(
-    <div className='flex flex-col basis-1/4 flex-grow mb-8'>
-      <div>image</div>
+const Post = ({ e }: IpropsComponentPost) => {
+
+  //change format data for data post
+  const originalDateString = "2023-12-15T17:31:31.259Z";
+  const originalDate = new Date(originalDateString);
+  const day = originalDate.getUTCDate();
+  const month = originalDate.getUTCMonth() + 1;
+  const year = originalDate.getUTCFullYear();
+  const formattedDateString = `${day}:${month}:${year}`;
+
+
+
+  return (
+    <div className='flex flex-col basis-1/4 flex-grow mb-[50px] border-b-2 border-gray-500 pb-2'>
+
+      {
+        (e?.image && e?.image !== "missing") &&
+        <div className='flex rouded-sm h-80'>
+        <img className='object-cover h-full w-full' src={'http://localhost:3002/' + e?.image} alt="postImage" />
+        </div>
+      }
 
       <div className='flex justify-between items-center pt-2 pb-2'>
-          <h3 className='text-sx text-white opacity-50'>admin</h3>
-          <p className='text-sx text-white opacity-50'>17.06,233</p>
+        <h3 className='text-sx text-white opacity-50'>{e?.username}</h3>
+        <p className='text-sx text-white opacity-50'>{formattedDateString}</p>
       </div>
-      <div className="text-white text-xl ">Post title</div>
-      <p className='text-white opacity-60 text-xs pt-2 mb-2'>description</p>
+      <div className="text-white text-xl ">{e?.title}</div>
+      <p className='text-white opacity-60 text-xs pt-2 mb-2'>{e?.description}</p>
 
       <div className="flex gap-3 items-center">
 
-        
+
         <button className='flex items-center justify-center text-xs gap-2 text-white opacity-50'>
-          <AiFillEye /> <span>0</span>
+          <AiFillEye /> <span>{e?.views}</span>
         </button>
 
 
         <button className='flex items-center justify-center text-xs gap-2 text-white opacity-50'>
           <AiOutlineMessage />
-          <span>0</span>
+          <span>{e?.comments?.length}</span>
         </button>
 
       </div>

@@ -28,21 +28,27 @@ import { getPosts } from '../../Redux/postSlice'
       <div className="flex justify-between items-start gap-8">
 
         <div className='flex flex-col basis-4/5'>
-        <div className='text-xs uppercase text-white'>Posts</div>
+        <div className='text-xs uppercase text-white mb-[24px]'>Posts</div>
         {
-          posts.map((post) => (
-            <Post e={post} />
+          posts.map((post, i) => (
+            <Post 
+            e={post} 
+            key={post?._id + i} 
+            />
           ))
         }
 
         </div>
 
         <div className="basis-1/5">
-          <div className='text-xs uppercase text-white'>Popular posts</div>
+          <div className='text-xs uppercase text-white mb-[24px]'>Popular posts</div>
 
           {
-            popularPosts.map((post) => (
-                <PopularPost e={post} />
+            popularPosts.map((post, i) => (
+                <PopularPost
+                 e={post}
+                 key={post?._id + i}
+                  />
             ))
           }
         
