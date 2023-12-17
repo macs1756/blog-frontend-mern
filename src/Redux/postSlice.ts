@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "../utils/axios"
-import { IgetAllPostsPayload, IinitialStatePost, IpostPayload } from '../Types'
+import { IdeletePostPayload, IgetAllPostsPayload, IinitialStatePost, IpostPayload, RemovePostResponse } from '../Types'
+import { Action } from "@remix-run/router"
 
 const initialState: IinitialStatePost = {
   posts: [],
@@ -10,11 +11,8 @@ const initialState: IinitialStatePost = {
 
 export const createPost = createAsyncThunk('post/createPost', async (params:FormData) => {
   try {
-
     const { data } = await axios.post('/posts/create', params)
-
     return data
-
   } catch (error) {
     console.log(error)
   }
@@ -29,6 +27,19 @@ export const getPosts = createAsyncThunk('post/getPosts', async () => {
   }
 })
 
+
+export const removePost = createAsyncThunk<RemovePostResponse, string>(
+  'post/removePost',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/posts/${id}/`);
+      return response.data;
+    } catch (error) {
+      console.error('Error removing post:', error);
+      return rejectWithValue(error); // You can customize this based on your needs
+    }
+  }
+);
 
 
 export const postSlice = createSlice({
@@ -65,6 +76,21 @@ export const postSlice = createSlice({
     })
 
     builder.addCase(getPosts.rejected, (state) => {
+      state.isLoading = false
+    })
+
+    
+    //Remove post
+    builder.addCase(removePost.pending, (state) => {
+      state.isLoading = true
+    })
+
+    builder.addCase(removePost.fulfilled, (state, action: IdeletePostPayload) => {
+      state.isLoading = false
+      state.posts = state.posts.filter(post => post._id !== action.payload._id )
+    })
+
+    builder.addCase(removePost.rejected, (state) => {
       state.isLoading = false
     })
 
