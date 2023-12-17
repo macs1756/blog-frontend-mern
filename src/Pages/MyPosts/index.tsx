@@ -30,7 +30,10 @@ function CatalogPosts(): JSX.Element {
     <div className='w-1/2 mx-auto p-10 flex flex-col gap-10'>
       {
         posts?.map((post) => (
-          <Post e={post} />
+          <Post 
+          e={post} 
+          type='delete'
+           />
         ))
       }
     </div>

@@ -64,6 +64,7 @@ export interface IgetAllPostsPayload{
 
 export interface IpropsComponentPost {
   e: Ipost
+  type?: string
 }
 
 export interface IresponseMyPosts{
