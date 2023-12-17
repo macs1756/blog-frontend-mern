@@ -64,9 +64,7 @@ export interface IgetAllPostsPayload{
 
 export interface IdeletePostPayload{
   payload: {
-    posts: Ipost[],
-    popularPosts: Ipost[]
-    id: string
+    _id: string
   }
 }
 
@@ -86,4 +84,5 @@ export interface IresponseMyPosts{
 
 export interface RemovePostResponse {
   data: any
+  _id?: string
 }

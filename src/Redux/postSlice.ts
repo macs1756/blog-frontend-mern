@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "../utils/axios"
-import { IdeletePostPayload, IgetAllPostsPayload, IinitialStatePost, IpostPayload, RemovePostResponse } from '../Types'
-import { Action } from "@remix-run/router"
+import { IgetAllPostsPayload, IinitialStatePost, IpostPayload, RemovePostResponse } from '../Types'
 
 const initialState: IinitialStatePost = {
   posts: [],
@@ -85,7 +84,7 @@ export const postSlice = createSlice({
       state.isLoading = true
     })
 
-    builder.addCase(removePost.fulfilled, (state, action: IdeletePostPayload) => {
+    builder.addCase(removePost.fulfilled, (state, action) => {
       state.isLoading = false
       state.posts = state.posts.filter(post => post._id !== action.payload._id )
     })
