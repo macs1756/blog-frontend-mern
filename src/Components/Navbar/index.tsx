@@ -42,7 +42,7 @@ function Navbar(): JSX.Element {
           <li className='hover:text-slate-600 tr font-semibold'>
             <NavLink
             className={({isActive})=>isActive ? 'text-slate-600' : ''} 
-            to='/posts'>My Posts</NavLink></li>
+            to='/my-posts'>My Posts</NavLink></li>
 
           <li className='hover:text-slate-600 tr font-semibold'>
             <NavLink 

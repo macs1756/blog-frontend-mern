@@ -65,3 +65,9 @@ export interface IgetAllPostsPayload{
 export interface IpropsComponentPost {
   e: Ipost
 }
+
+export interface IresponseMyPosts{
+  data: {
+    posts: Ipost[]
+  }
+}
