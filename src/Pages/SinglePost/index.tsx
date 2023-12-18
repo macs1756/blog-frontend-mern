@@ -73,8 +73,9 @@ function SinglePost(): JSX.Element {
 
 {
   user?._id === post?.autor &&
-         <div>
-            <button>Edit post</button>
+         <div className='gap-2 flex mt-[20px]'>
+            <button className='tr bg-gray-600 py-1 px-4 text-sm rounded-md hover:bg-slate-700'>Edit post</button>
+            <button className='tr bg-gray-600 py-1 px-4 text-sm rounded-md hover:bg-slate-700'>Delete post</button>
           </div>
 }         
 
