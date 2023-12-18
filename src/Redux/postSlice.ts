@@ -38,7 +38,20 @@ export const removePost = createAsyncThunk<RemovePostResponse, string>(
       return rejectWithValue(error); // You can customize this based on your needs
     }
   }
-);
+)
+
+export const replacePost = createAsyncThunk<RemovePostResponse, any>(
+  'post/replacePost',
+  async (updatedPost : any, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`/posts/${updatedPost.id}/`,updatedPost);
+      return response.data;
+    } catch (error) {
+      console.error('Error removing post:', error);
+      return rejectWithValue(error); // You can customize this based on your needs
+    }
+  }
+)
 
 
 export const postSlice = createSlice({

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
-import { createPost } from '../../Redux/postSlice'
+import { replacePost } from '../../Redux/postSlice'
 import { Ipost } from '../../Types'
 import axios from '../../utils/axios'
 
@@ -44,12 +44,13 @@ function EditPost(): JSX.Element {
   const clearMyForm = () => {
     setTitle('')
     setDescription('')
+    setOldImage('')
     setImage(null)
   }
 
   React.useEffect(()=>{
       if(posts[posts.length - 1] && title.length > 0){
-        toast('Post created')
+        toast('Update Post')
         clearMyForm()
       }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,16 +59,23 @@ function EditPost(): JSX.Element {
   const submitHandler = () => {
     try {
       
-      const data = new FormData()
+      const updateData: FormData = new FormData()
 
-      data.append('title', title)
-      data.append('description', description)
+      updateData.append('title', title)
+
+      
+      id ? updateData.append('id', id) : updateData.append('id', '')
+
+      updateData.append('description', description)
       if(image !== null){
-        data.append('image', image)
+        updateData.append('image', image)
       }
 
-      dispatch(createPost(data))
 
+      dispatch(replacePost(updateData))
+
+      navigate('/')
+     
     } catch (error) {
       console.log(error);
     }
@@ -75,11 +83,11 @@ function EditPost(): JSX.Element {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      const selectedFile = e.target.files[0];
+      const selectedFile = e.target.files[0]
 
-      // Add a null check before updating the state
       if (selectedFile) {
-        setImage(selectedFile);
+        setImage(selectedFile)
+        setOldImage('')
       }
     }
   };
@@ -100,7 +108,13 @@ function EditPost(): JSX.Element {
       <div className='flex object-cover py-2'>
         {
           oldImage && (
-            <img src={'localhost//:3001/uploads/' + oldImage} alt="preview" />
+            <img src={'http://localhost:3002/' + oldImage} alt="preview" />
+          )
+        }
+
+        {
+          image && (
+            <img src={URL.createObjectURL(image)} alt="preview" />
           )
         }
       </div>
