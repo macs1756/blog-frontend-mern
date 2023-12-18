@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
 import { createPost } from '../../Redux/postSlice'
@@ -15,7 +15,10 @@ function EditPost(): JSX.Element {
   
   const [description,setDescription] = React.useState<string>(post?.description || '')
   const [image, setImage] = React.useState<File | null>(null)
+  const [oldImage, setOldImage] = React.useState<string>('')
   const { posts } = useAppSelector(state => state.post )
+  const navigate = useNavigate()
+
 
 
   const fetchPost = React.useCallback(async () => {
@@ -34,6 +37,7 @@ function EditPost(): JSX.Element {
     if(post){
       setTitle(post?.title)
       setDescription(post?.description)
+      setOldImage(post?.image)
     }
   }, [post])
 
@@ -95,8 +99,8 @@ function EditPost(): JSX.Element {
    
       <div className='flex object-cover py-2'>
         {
-          image && (
-            <img src={URL.createObjectURL(image)} alt="preview" />
+          oldImage && (
+            <img src={'localhost//:3001/uploads/' + oldImage} alt="preview" />
           )
         }
       </div>
