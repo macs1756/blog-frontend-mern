@@ -91,7 +91,10 @@ function SinglePost(): JSX.Element {
             {
               user?._id === post?.autor &&
               <div className='gap-2 flex mt-[20px]'>
+                <Link to={'/edit-post/' + post?._id}>
                 <button className='tr bg-gray-600 py-1 px-4 text-sm rounded-md hover:bg-slate-700'>Edit post</button>
+                </Link>
+                
 
                 <button
                   onClick={removePostHandler}

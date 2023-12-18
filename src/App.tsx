@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useAppDispatch} from './Hooks/reduxHooks'
 import { getMe } from './Redux/authSlice'
+import EditPost from './Pages/EditPost'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='my-posts' element={<CatalogPosts />} />
         <Route path='post/:id' element={<SinglePost />} />
+        <Route path='edit-post/:id' element={<EditPost />} />
         <Route path='add-post' element={<AddPost />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
