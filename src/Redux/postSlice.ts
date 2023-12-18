@@ -40,7 +40,7 @@ export const removePost = createAsyncThunk<RemovePostResponse, string>(
   }
 )
 
-export const replacePost = createAsyncThunk<RemovePostResponse, FormData>(
+export const replacePost = createAsyncThunk<any, FormData>(
   'post/replacePost',
   async (updatedPost: FormData, { rejectWithValue }) => {
 
@@ -55,7 +55,6 @@ export const replacePost = createAsyncThunk<RemovePostResponse, FormData>(
     }
   }
 )
-
 
 export const postSlice = createSlice({
   name: 'post',
@@ -109,6 +108,25 @@ export const postSlice = createSlice({
       state.isLoading = false
     })
 
+
+    //Replace post
+    builder.addCase(replacePost.pending, (state) => {
+      state.isLoading = true
+    })
+
+    builder.addCase(replacePost.fulfilled, (state, action) => {
+      state.isLoading = false
+
+      const index = state.posts.findIndex( post => post?._id === action.payload._id)
+
+      state.posts[index] = action.payload
+      // state.posts[index].description = action.payload.description
+      // state.posts[index].image = action.payload.image
+    })
+
+    builder.addCase(replacePost.rejected, (state) => {
+      state.isLoading = false
+    })
 
 
   },
