@@ -40,11 +40,14 @@ export const removePost = createAsyncThunk<RemovePostResponse, string>(
   }
 )
 
-export const replacePost = createAsyncThunk<RemovePostResponse, any>(
+export const replacePost = createAsyncThunk<RemovePostResponse, FormData>(
   'post/replacePost',
-  async (updatedPost : any, { rejectWithValue }) => {
+  async (updatedPost: FormData, { rejectWithValue }) => {
+
+    const id = updatedPost.get('id') as string;
+
     try {
-      const response = await axios.put(`/posts/${updatedPost.id}/`,updatedPost);
+      const response = await axios.put(`/posts/${id}/`,updatedPost);
       return response.data;
     } catch (error) {
       console.error('Error removing post:', error);
