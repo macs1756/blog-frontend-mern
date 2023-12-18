@@ -9,11 +9,21 @@ export interface InitialStateUserDetails {
   password: string
   posts: string
   createdAt: string
-  updatedAt: string 
+  updatedAt: string
   __v: number
 }
 
-export interface Ipost{
+// export interface IautorPost {
+//   _id:	string
+//   username: string
+//   password:	string
+//   posts:[]
+//   createdAt:	string
+//   updatedAt:	string
+//   __v:	number
+// }
+
+export interface Ipost {
   username: string
   title: string
   description: string
@@ -34,11 +44,11 @@ export interface IinitialStatePost {
 }
 
 
-export interface InitialStateUser{
-  user: InitialStateUserDetails  | null
+export interface InitialStateUser {
+  user: InitialStateUserDetails | null
   status: string | null
   isLoading: boolean
-  token:  string | null
+  token: string | null
 }
 
 export interface RegisterUserPayload {
@@ -46,23 +56,23 @@ export interface RegisterUserPayload {
   password: string
 }
 
-export type TcheckIsAuth = (state: {auth: InitialStateUser} ) => boolean
+export type TcheckIsAuth = (state: { auth: InitialStateUser }) => boolean
 
 
 
-export interface IpostPayload{
-    payload: Ipost
+export interface IpostPayload {
+  payload: Ipost
 }
 
-export interface IgetAllPostsPayload{
+export interface IgetAllPostsPayload {
   payload: {
     posts: Ipost[],
-     popularPosts: Ipost[]
+    popularPosts: Ipost[]
   }
 }
 
 
-export interface IdeletePostPayload{
+export interface IdeletePostPayload {
   payload: {
     _id: string
   }
@@ -73,10 +83,9 @@ export interface IdeletePostPayload{
 
 export interface IpropsComponentPost {
   e: Ipost
-  type?: string
 }
 
-export interface IresponseMyPosts{
+export interface IresponseMyPosts {
   data: {
     posts: Ipost[]
   }

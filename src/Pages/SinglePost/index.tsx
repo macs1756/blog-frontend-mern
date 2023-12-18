@@ -4,12 +4,16 @@ import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
 import { Ipost } from '../../Types'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../Hooks/reduxHooks'
 
 function SinglePost(): JSX.Element {
 
   const [post, setPost] = React.useState<Ipost | null>(null)
 
   const { id } = useParams()
+
+  const { user } = useAppSelector( state => state.auth) 
+
 
   const fetchPost = React.useCallback(async () => {
     const { data } = await axios.get(`http://localhost:3002/api/posts/${id}/`)
@@ -65,6 +69,16 @@ function SinglePost(): JSX.Element {
               <span>{post?.comments?.length}</span>
             </button>
           </div>
+
+
+{
+  user?._id === post?.autor &&
+         <div>
+            <button>Edit post</button>
+          </div>
+}         
+
+
         </div>
         {/* Moved closing tag for <div className='flex gap-10 py-8'> here */}
       </div>

@@ -3,7 +3,7 @@ import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 import { IpropsComponentPost } from '../../Types'
 
-const Post = ({ e, type }: IpropsComponentPost) => {
+const Post = ({ e }: IpropsComponentPost) => {
 
   //change format data for data post
   const originalDateString = "2023-12-15T17:31:31.259Z"
@@ -16,7 +16,7 @@ const Post = ({ e, type }: IpropsComponentPost) => {
 
 
   return (
-    <Link to={type === 'delete' ? '/edit-post/' + e?._id  :'/post/' + e?._id} className='flex flex-col basis-1/4 flex-grow mb-[50px] border-b-2 border-gray-500 pb-2'>
+    <Link to={'/post/' + e?._id} className='flex flex-col basis-1/4 flex-grow mb-[50px] border-b-2 border-gray-500 pb-2'>
 
       {
         (e?.image && e?.image !== "missing") &&
