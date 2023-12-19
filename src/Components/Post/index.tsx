@@ -29,8 +29,8 @@ const Post = ({ e }: IpropsComponentPost) => {
         <h3 className='text-sx text-white opacity-50'>{e?.username}</h3>
         <p className='text-sx text-white opacity-50'>{formattedDateString}</p>
       </div>
-      <div className="text-white text-xl line-clamp-3">{e?.title}</div>
-      <p className='text-white opacity-60 text-xs pt-2 mb-2'>{e?.description}</p>
+      <div className="text-white text-xl line-clamp-2">{e?.title}</div>
+      <p className='text-white opacity-60 text-xs pt-2 mb-2 line-clamp-4'>{e?.description}</p>
 
       <div className="flex gap-3 items-center">
 
