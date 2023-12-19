@@ -118,10 +118,8 @@ export const postSlice = createSlice({
       state.isLoading = false
 
       const index = state.posts.findIndex( post => post?._id === action.payload.post._id)
-
       state.posts[index] = action.payload.post
-      // state.posts[index].description = action.payload.description
-      // state.posts[index].image = action.payload.image
+  
     })
 
     builder.addCase(replacePost.rejected, (state) => {
