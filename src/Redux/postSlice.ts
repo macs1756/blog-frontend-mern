@@ -117,9 +117,9 @@ export const postSlice = createSlice({
     builder.addCase(replacePost.fulfilled, (state, action) => {
       state.isLoading = false
 
-      const index = state.posts.findIndex( post => post?._id === action.payload._id)
+      const index = state.posts.findIndex( post => post?._id === action.payload.post._id)
 
-      state.posts[index] = action.payload
+      state.posts[index] = action.payload.post
       // state.posts[index].description = action.payload.description
       // state.posts[index].image = action.payload.image
     })
