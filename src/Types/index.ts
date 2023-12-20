@@ -78,9 +78,6 @@ export interface IdeletePostPayload {
   }
 }
 
-
-
-
 export interface IpropsComponentPost {
   e: Ipost
 }
@@ -96,8 +93,13 @@ export interface RemovePostResponse {
   _id?: string
 }
 
+export interface Icomment{
+  comment: string
+  autor: string
+}
+
 export interface IcommentsInitialState{
-  comments: []
+  comments: Icomment[]
   isLoading: boolean
 }
 
@@ -105,3 +107,8 @@ export interface IcreateCommentArgs{
   postId: string,
   comment: string
 }
+
+export interface IcreateCommentPayload {
+  payload: IcreateCommentArgs
+}
+

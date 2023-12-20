@@ -10,7 +10,6 @@ const initialState: IcommentsInitialState = {
 
 export const createComment = createAsyncThunk<any, IcreateCommentArgs>('comment/createComment', async ({postId, comment}) => {
     try {
-      
       const { data } = await axios.post(`/comments/${postId}`, {
         postId, comment
       })
@@ -26,7 +25,26 @@ export const createComment = createAsyncThunk<any, IcreateCommentArgs>('comment/
 export const commentSlice = createSlice({
   name: 'comments',
   initialState,
-  reducers: {}
+  reducers: {},
+  extraReducers(builder) {
+    
+
+ //Create comment
+ builder.addCase(createComment.pending, (state) => {
+  state.isLoading = true
+})
+
+builder.addCase(createComment.fulfilled, (state, action) => {
+  state.isLoading = false
+  state.comments.push(action?.payload)
+})
+
+builder.addCase(createComment.rejected, (state) => {
+  state.isLoading = false
+})
+
+
+  },
 })
 
 export default commentSlice.reducer
