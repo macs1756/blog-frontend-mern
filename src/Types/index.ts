@@ -95,3 +95,8 @@ export interface RemovePostResponse {
   data: any
   _id?: string
 }
+
+export interface IcommentsInitialState{
+  comments: []
+  isLoading: boolean
+}

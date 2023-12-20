@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import postSlice from './postSlice'
 import authSlice from './authSlice'
+import commentSlice from './commentSlice'
 
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore, persistReducer } from 'redux-persist'
 
@@ -15,11 +16,13 @@ const persistConfig = {
 
 const persistedAuthSlice = persistReducer(persistConfig, authSlice)
 const persistedpostSlice = persistReducer(persistConfig, postSlice)
+const persistedCommentSlice = persistReducer(persistConfig, commentSlice)
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthSlice,
-    post: persistedpostSlice
+    post: persistedpostSlice,
+    comments: persistedCommentSlice,
   },
   devTools: { trace: true, traceLimit: 25 },
   middleware: (getDefaultMiddleware) =>
