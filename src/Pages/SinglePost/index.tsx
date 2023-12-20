@@ -104,9 +104,19 @@ function SinglePost(): JSX.Element {
 
 
           </div>
-          {/* Moved closing tag for <div className='flex gap-10 py-8'> here */}
         </div>
-        <div className='w-1/3'>Comments</div>
+
+        <div className='w-1/3 p-8 bg-gray-700 flex flex-col gap-2 rounded-sm'>
+          <form className='flex gap-2'>
+            <input 
+            type="text" 
+            placeholder='Comment'
+            className='text-black w-full rounded-sm bg-gray-400 border p-2 text-xs outline-none placeholder:text-gray-700'
+             />
+
+          </form>
+        </div>
+
       </div>
 
     </>
