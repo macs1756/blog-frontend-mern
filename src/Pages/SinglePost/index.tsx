@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
 import { removePost } from '../../Redux/postSlice'
 import { toast } from 'react-toastify'
+import { createComment } from '../../Redux/commentSlice'
+import { comment } from 'postcss'
 
 function SinglePost(): JSX.Element {
 
@@ -50,13 +52,16 @@ function SinglePost(): JSX.Element {
   const month = originalDate.getUTCMonth() + 1
   const year = originalDate.getUTCFullYear()
   const formattedDateString = `${day}:${month}:${year}`
-
-
+ 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     try {
-      
-      
+   
+      if(id && comment.length > 0){
+        dispatch(createComment({ postId: id, comment: commentBody }))
+        setCommentBody('')
+      }
+
 
     } catch (error) {
       console.log(error)
