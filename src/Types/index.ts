@@ -100,3 +100,8 @@ export interface IcommentsInitialState{
   comments: []
   isLoading: boolean
 }
+
+export interface IcreateCommentArgs{
+  postId: string,
+  comment: string
+}
