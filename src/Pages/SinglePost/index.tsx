@@ -113,6 +113,10 @@ function SinglePost(): JSX.Element {
             placeholder='Comment'
             className='text-black w-full rounded-sm bg-gray-400 border p-2 text-xs outline-none placeholder:text-gray-700'
              />
+             <button 
+             className='flex justify-center items-center bg-gray-600 text-xs text-white rounded-sm py-2 px-4 tr hover:bg-gray-800'
+             type='submit'
+             >Add my comment</button>
 
           </form>
         </div>
