@@ -11,7 +11,8 @@ import { toast } from 'react-toastify'
 function SinglePost(): JSX.Element {
 
   const [post, setPost] = React.useState<Ipost | null>(null)
-
+  const [commentBody, setCommentBody] = React.useState<string>('')
+ 
   const { id } = useParams()
 
   const { user } = useAppSelector(state => state.auth)
@@ -49,6 +50,19 @@ function SinglePost(): JSX.Element {
   const month = originalDate.getUTCMonth() + 1
   const year = originalDate.getUTCFullYear()
   const formattedDateString = `${day}:${month}:${year}`
+
+
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    try {
+      
+      
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <>
@@ -109,12 +123,16 @@ function SinglePost(): JSX.Element {
         <div className='w-1/3 p-8 bg-gray-700 flex flex-col gap-2 rounded-sm'>
           <form className='flex gap-2'>
             <input 
+            value={commentBody}
+            onChange={(e)=>{setCommentBody(e.target.value)}}
             type="text" 
             placeholder='Comment'
             className='text-black w-full rounded-sm bg-gray-400 border p-2 text-xs outline-none placeholder:text-gray-700'
              />
+
              <button 
              className='flex justify-center items-center bg-gray-600 text-xs text-white rounded-sm py-2 px-4 tr hover:bg-gray-800'
+             onClick={handleSubmit}
              type='submit'
              >Add my comment</button>
 
