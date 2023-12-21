@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../Hooks/reduxHooks'
 import { removePost } from '../../Redux/postSlice'
 import { toast } from 'react-toastify'
-import { createComment } from '../../Redux/commentSlice'
+import { createComment, getCommentsForPost } from '../../Redux/commentSlice'
 import { comment } from 'postcss'
 
 function SinglePost(): JSX.Element {
@@ -44,6 +44,23 @@ function SinglePost(): JSX.Element {
   React.useEffect(() => {
     fetchPost()
   }, [fetchPost])
+
+  const fetchComments = React.useCallback(async ()=> {
+        try {
+
+          if(id){
+            dispatch(getCommentsForPost(id))
+          }
+          
+          
+        } catch (error) {
+          console.log(error);
+        }
+  }, [dispatch, id])
+
+  React.useEffect(() => {
+    fetchComments()
+  }, [fetchComments])
 
   //change format data for data post
   const originalDateString = "2023-12-15T17:31:31.259Z"
