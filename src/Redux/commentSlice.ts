@@ -66,7 +66,7 @@ builder.addCase(createComment.rejected, (state) => {
 
 builder.addCase(getCommentsForPost.fulfilled, (state, action) => {
   state.isLoading = false
-  state.comments = action?.payload
+  state.comments = action?.payload.comments
 })
 
 builder.addCase(getCommentsForPost.rejected, (state) => {

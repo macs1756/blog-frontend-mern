@@ -111,3 +111,9 @@ export interface IcreateCommentArgs{
 export interface IcreateCommentPayload {
   payload: IcreateCommentArgs
 }
+
+
+export interface IcommentComponentProps {
+  cmt: Icomment
+  key: string
+}

@@ -1,6 +1,7 @@
 import * as React from 'react'
+import { IcommentComponentProps } from '../../Types'
 
-const Comment: React.FC = () => {
+const Comment = ({ cmt }:IcommentComponentProps) => {
   return(
     <div>Comment</div>
   )

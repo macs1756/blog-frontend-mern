@@ -162,11 +162,14 @@ function SinglePost(): JSX.Element {
 
           </form>
 
-          {
-            comments?.map(()=>(
-              <Comment />
+           {
+             comments?.map((e, i)=>(
+              <Comment 
+              key={e?.comment + i}
+              cmt={e}
+               />
             ))
-          }
+          } 
         </div>
 
       </div>
