@@ -9,6 +9,7 @@ import { removePost } from '../../Redux/postSlice'
 import { toast } from 'react-toastify'
 import { createComment, getCommentsForPost } from '../../Redux/commentSlice'
 import { comment } from 'postcss'
+import Comment from '../../Components/Comment'
 
 function SinglePost(): JSX.Element {
 
@@ -18,6 +19,7 @@ function SinglePost(): JSX.Element {
   const { id } = useParams()
 
   const { user } = useAppSelector(state => state.auth)
+  const { comments } = useAppSelector(state => state.comments)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -159,6 +161,12 @@ function SinglePost(): JSX.Element {
              >Add my comment</button>
 
           </form>
+
+          {
+            comments?.map(()=>(
+              <Comment />
+            ))
+          }
         </div>
 
       </div>
