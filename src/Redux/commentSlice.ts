@@ -26,7 +26,7 @@ export const createComment = createAsyncThunk<any, IcreateCommentArgs>('comment/
 export const getCommentsForPost = createAsyncThunk('comment/getCommentsForPost', async (postId: string) => {
   try {
     
-    const { data } = await axios.post(`/comments/${postId}`, {
+    const { data } = await axios.get(`/comments/${postId}`, {
     })
 
     return data
@@ -54,6 +54,22 @@ builder.addCase(createComment.fulfilled, (state, action) => {
 })
 
 builder.addCase(createComment.rejected, (state) => {
+  state.isLoading = false
+})
+
+
+
+ //Get all comments
+ builder.addCase(getCommentsForPost.pending, (state) => {
+  state.isLoading = true
+})
+
+builder.addCase(getCommentsForPost.fulfilled, (state, action) => {
+  state.isLoading = false
+  state.comments = action?.payload
+})
+
+builder.addCase(getCommentsForPost.rejected, (state) => {
   state.isLoading = false
 })
 
