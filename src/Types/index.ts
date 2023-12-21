@@ -111,5 +111,3 @@ export interface IcreateCommentArgs{
 export interface IcreateCommentPayload {
   payload: IcreateCommentArgs
 }
-
-

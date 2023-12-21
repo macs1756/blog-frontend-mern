@@ -22,6 +22,20 @@ export const createComment = createAsyncThunk<any, IcreateCommentArgs>('comment/
     }
 })
 
+
+export const getCommentsForPost = createAsyncThunk('comment/getCommentsForPost', async (postId: string) => {
+  try {
+    
+    const { data } = await axios.post(`/comments/${postId}`, {
+    })
+
+    return data
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 export const commentSlice = createSlice({
   name: 'comments',
   initialState,
